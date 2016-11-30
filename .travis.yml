@@ -6,14 +6,6 @@ branches:
 # https://docs.travis-ci.com/user/multi-os/
 matrix:
   include:
-    - os: osx
-      language: generic
-      env:
-        - TARGET=localhost
-        - PYTHONPATH="/Library/Python/2.7/site-packages:$PYTHONPATH"
-      install:
-        - sudo pip install -U setuptools
-        - sudo pip install cookiecutter
     - os: linux
       dist: trusty
       language: python

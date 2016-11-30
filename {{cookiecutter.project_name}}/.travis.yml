@@ -5,11 +5,6 @@ branches:
 
 # https://docs.travis-ci.com/user/multi-os/
 matrix:
-  include:
-    - os: osx
-      language: generic
-      env:
-        - TARGET=localhost
     - os: linux
       dist: trusty
       language: python
