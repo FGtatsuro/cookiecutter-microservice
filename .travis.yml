@@ -24,6 +24,7 @@ install:
 
 script:
   - cookiecutter --replay --config-file tests/cookiecutterrc .
+  - git clone https://github.com/FGtatsuro/ansible_utility.git
   - cd test_project
   - pip install ansible
   # ansible-galaxy CLI returns error status when no rule exists in requirement file.

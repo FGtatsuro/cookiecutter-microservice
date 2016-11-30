@@ -26,5 +26,6 @@ install:
   - bundle install
 
 script:
-  - ansible-playbook provision/main.yml -i spec/inventory/docker/hosts -l {{ cookiecutter.project_name }}
+  - git clone https://github.com/FGtatsuro/ansible_utility.git
+  - ansible-playbook provision/main.yml -i spec/inventory/docker/hosts -l {{ cookiecutter.project_name }} --extra-vars="utility_module_path=../ansible_utility"
   - bundle exec rake {{ cookiecutter.project_name }}:spec:all
