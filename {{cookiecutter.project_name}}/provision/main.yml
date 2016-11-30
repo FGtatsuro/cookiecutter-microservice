@@ -1,0 +1,17 @@
+---
+- hosts: {{ cookiecutter.project_name }}
+  # Prevent error occurs before pre_tasks. (ex. Docker container isn't running.)
+  gather_facts: no
+  pre_tasks:
+    - set_fact:
+        utility_module_path: "{{ '{{ utility_module_path|default(\'../../ansible_utility\') }}' }}"
+    - name: Do pre-task for each platform
+      include: "{{ '{{ utility_module_path }}' }}/pre_tasks/{{ '{{ ansible_connection }}' }}.yml"
+    - name: "Gather fact information on target platform."
+      setup:
+  roles:
+    # - role: FGtatsuro.python-requirements
+  tasks:
+  post_tasks:
+    - name: Do post-task for each platform
+      include: "{{ '{{ utility_module_path }}' }}/post_tasks/{{ '{{ ansible_connection }}' }}.yml"

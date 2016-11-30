@@ -1,0 +1,7 @@
+[{{ cookiecutter.project_name }}]
+{{ cookiecutter.project_name }}-spec     utility_docker_base_image=fgtatsuro/infra-bridgehead:alpine-3.3 utility_docker_commit_image=fgtatsuro/{{ cookiecutter.project_name }}:latest
+
+[{{ cookiecutter.project_name }}:vars]
+ansible_connection=docker
+ansible_user=root
+utility_docker_image_committed=no
