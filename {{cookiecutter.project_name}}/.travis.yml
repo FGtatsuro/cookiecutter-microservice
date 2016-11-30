@@ -28,7 +28,7 @@ install:
 script:
   - git clone https://github.com/FGtatsuro/ansible_utility.git
   - ansible-playbook provision/main.yml -i spec/inventory/docker/hosts -l {{ cookiecutter.project_name }} --extra-vars="utility_module_path=../ansible_utility"
-  - docker rm -f {{ cookiecutter.project_name }}-spec
+  - docker rm -f service-{{ cookiecutter.project_name }}
   - (cd deploy/docker/ && docker-compose up -d)
   - bundle exec rake {{ cookiecutter.project_name }}:spec:all
   - (cd deploy/docker/ && docker-compose down)

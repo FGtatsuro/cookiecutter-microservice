@@ -5,7 +5,7 @@ namespace '{{ cookiecutter.project_name }}' do
   namespace :spec do
     hosts = [
       {
-        :name     =>  '{{ cookiecutter.project_name }}-spec',
+        :name     =>  'service-{{ cookiecutter.project_name }}',
         :backend  =>  'docker',
         :pattern  =>  "{{ cookiecutter.project_name }}_spec.rb"
       }
@@ -14,7 +14,7 @@ namespace '{{ cookiecutter.project_name }}' do
     all = []
 
     hosts.each do |host|
-      n = host[:name].gsub(/-spec/, '')
+      n = host[:name].gsub(/service-/, '')
       desc "Run serverspec tests for #{n}."
       RSpec::Core::RakeTask.new(n.to_sym) do |t|
         ENV['TARGET_HOST'] = host[:name]
