@@ -4,4 +4,4 @@
 [{{ cookiecutter.project_name }}:vars]
 ansible_connection=docker
 ansible_user=root
-utility_docker_image_committed=no
+utility_docker_image_committed=yes

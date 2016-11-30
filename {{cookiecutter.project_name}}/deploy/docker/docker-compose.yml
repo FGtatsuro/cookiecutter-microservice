@@ -2,6 +2,7 @@
 version: '2'
 services:
   {{ cookiecutter.project_name }}:
+    container_name: {{ cookiecutter.project_name }}-spec
     image: fgtatsuro/{{ cookiecutter.project_name }}:latest
     command: /opt/{{ cookiecutter.project_name }}/services.sh
     volumes:
