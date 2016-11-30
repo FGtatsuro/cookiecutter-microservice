@@ -1,34 +1,29 @@
 require 'rake'
 require 'rspec/core/rake_task'
 
-task :spec    => 'spec:all'
-task :default => :spec
+namespace '{{ cookiecutter.project_name }}' do
+  namespace :spec do
+    hosts = [
+      {
+        :name     =>  '{{ cookiecutter.project_name }}-spec',
+        :backend  =>  'docker',
+        :pattern  =>  "{{ cookiecutter.project_name }}_spec.rb"
+      }
+    ]
 
-namespace :spec do
-  hosts = [
-    {
-      :name     =>  'localhost',
-      :backend  =>  'exec'
-    },
-    {
-      :name     =>  'container',
-      :backend  =>  'docker' 
-    }
-  ]
-  if ENV['SPEC_TARGET'] then
-    target = hosts.select{|h|  h[:name] == ENV['SPEC_TARGET']}
-    hosts = target unless target.empty?
-  end
+    all = []
 
-  task :all     => hosts.map{|h|  "spec:#{h[:name]}"}
-  task :default => :all
-
-  hosts.each do |host|
-    desc "Run serverspec tests to #{host[:name]}(backend=#{host[:backend]})"
-    RSpec::Core::RakeTask.new(host[:name].to_sym) do |t|
-      ENV['TARGET_HOST'] = host[:name]
-      ENV['SPEC_TARGET_BACKEND'] = host[:backend]
-      t.pattern = "{{ cookiecutter.project_name }}_spec.rb"
+    hosts.each do |host|
+      n = host[:name].gsub(/-spec/, '')
+      desc "Run serverspec tests for #{n}."
+      RSpec::Core::RakeTask.new(n.to_sym) do |t|
+        ENV['TARGET_HOST'] = host[:name]
+        ENV['TARGET_BACKEND'] = host[:backend]
+        t.pattern = host[:pattern]
+      end
+      all << "{{ cookiecutter.project_name }}:spec:#{n}"
     end
+
+    task :all =>  all
   end
 end
