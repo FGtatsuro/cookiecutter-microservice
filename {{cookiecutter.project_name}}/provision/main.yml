@@ -12,6 +12,19 @@
   roles:
     # - role: FGtatsuro.python-requirements
   tasks:
+    - block:
+      - name: Ensure /opt/{{ cookiecutter.project_name }} directory exists
+        file:
+          path: '/opt/{{ cookiecutter.project_name }}'
+          owner: 'root'
+          group: 'root'
+          state: 'directory'
+      - name: Set service script
+        template:
+          src: '../resources/services.sh'
+          dest: '/opt/{{ cookiecutter.project_name }}/services.sh'
+          mode: '0755'
+      become: yes
   post_tasks:
     - name: Do post-task for each platform
       include: "{{ '{{ utility_module_path }}' }}/post_tasks/{{ '{{ ansible_connection }}' }}.yml"
