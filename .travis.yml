@@ -26,7 +26,8 @@ script:
   - cookiecutter --replay --config-file tests/cookiecutterrc .
   - cd test_project
   - pip install ansible
-  - ansible-galaxy install -r role_requirements.yml
+  # ansible-galaxy CLI returns error status when no rule exists in requirement file.
+  # - ansible-galaxy install -r role_requirements.yml
   - gem install bundler
   - bundle install
   - ansible-playbook provision/main.yml -i spec/inventory/docker/hosts -l test_project
