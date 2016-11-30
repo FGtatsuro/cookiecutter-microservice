@@ -32,4 +32,4 @@ script:
   - gem install bundler
   - bundle install
   - ansible-playbook provision/main.yml -i spec/inventory/docker/hosts -l test_project
-  - bundle exec rake spec:test_project:all
+  - bundle exec rake test_project:spec:all
