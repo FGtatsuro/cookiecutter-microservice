@@ -1,0 +1,11 @@
+---
+version: '2'
+services:
+  {{ cookiecutter.project_name }}:
+    container_name: service-{{ cookiecutter.project_name }}
+    image: fgtatsuro/{{ cookiecutter.project_name }}:latest
+    command: /opt/{{ cookiecutter.project_name }}/services.sh
+    volumes:
+      - /etc/localtime:/etc/localtime:ro
+    environment:
+      - EXAMPLE_ENV=example
