@@ -1,5 +1,5 @@
 [{{ cookiecutter.project_name }}]
-service-{{ cookiecutter.project_name }}         utility_docker_base_image=fgtatsuro/infra-bridgehead:alpine-3.3 utility_docker_commit_image=fgtatsuro/{{ cookiecutter.project_name }}:latest
+service-{{ cookiecutter.project_name }}         utility_docker_base_image=fgtatsuro/infra-bridgehead:alpine-3.3 utility_docker_commit_image=fgtatsuro/{{ cookiecutter.project_name }}:0.1
 
 [{{ cookiecutter.project_name }}:vars]
 ansible_connection=docker
