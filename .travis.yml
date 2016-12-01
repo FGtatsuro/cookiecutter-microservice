@@ -33,6 +33,8 @@ script:
   - bundle install
   - ansible-playbook provision/main.yml -i spec/inventory/docker/hosts -l test_project
   - docker rm -f service-test_project
-  - (cd deploy/docker/ && docker-compose up -d)
+  - bundle exec rake test_project:gen-start-cmd
+  - bundle exec rake test_project:start
   - bundle exec rake test_project:spec:all
-  - (cd deploy/docker/ && docker-compose down)
+  - bundle exec rake test_project:gen-stop-cmd
+  - bundle exec rake test_project:stop
