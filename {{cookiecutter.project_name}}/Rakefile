@@ -26,4 +26,46 @@ namespace '{{ cookiecutter.project_name }}' do
 
     task :all =>  all
   end
+
+  def {{ cookiecutter.project_name }}_start_cmd
+    env = [
+    ]
+    command = "#{env.join(' ')} docker-compose up -d"
+    return command
+  end
+
+  def {{ cookiecutter.project_name }}_stop_cmd
+    env = [
+    ]
+    command = "#{env.join(' ')} docker-compose down"
+    return command
+  end
+
+  desc "Generate start command.\n" +
+       "This is useful when we want to start {{ cookiecutter.project_name }} via Ansible."
+  task 'gen-start-cmd' do
+    puts {{ cookiecutter.project_name }}_start_cmd
+  end
+
+  desc "Generate stop command.\n" +
+       "This is useful when we want to stop {{ cookiecutter.project_name }} via Ansible."
+  task 'gen-stop-cmd' do
+    puts {{ cookiecutter.project_name }}_stop_cmd
+  end
+
+  desc "Start {{ cookiecutter.project_name }}."
+  task :start do
+    command =
+      "cd #{File.expand_path(__dir__)}/deploy/docker/ && " +
+      {{ cookiecutter.project_name }}_start_cmd
+    sh command
+  end
+
+  desc "Stop {{ cookiecutter.project_name }}."
+  task :stop do
+    command =
+      "cd #{File.expand_path(__dir__)}/deploy/docker/ && " +
+      {{ cookiecutter.project_name }}_stop_cmd
+    sh command
+  end
 end
