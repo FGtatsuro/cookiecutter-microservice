@@ -24,11 +24,21 @@ year [2016]:
 author [FGtatsuro]:
 ...
 $ cd test-project
-$ ls -1a
-.
-..
+$ ls -1
+CHANGELOG.md
+Gemfile
+Gemfile.lock
 LICENSE
-README.rst
+README.md
+Rakefile
+ansible.cfg
+deploy
+provision
+resources
+role_requirements.yml
+roles
+spec
+...
 ```
 
 You can overwrite default value of the field prompt asks with
