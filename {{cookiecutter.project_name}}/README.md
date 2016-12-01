@@ -95,10 +95,10 @@ And helper tasks are defined to start/stop this service with environment variabl
 
 ```bash
 # Start
-$ rake {{ cookiecutter.project_name }}:start
+$ bundle exec rake {{ cookiecutter.project_name }}:start
 
 # Stop
-$ rake {{ cookiecutter.project_name }}:stop
+$ bundle exec rake {{ cookiecutter.project_name }}:stop
 ```
 
 ### Variables
@@ -131,7 +131,7 @@ $ bundle exec rake {{ cookiecutter.project_name }}:spec:all
 Task
 ----
 
-As we use tasks to deploy service/run tests, several utility tasks are defined. You can check them with `rake -D`.
+As we use tasks to deploy service/run tests, several utility tasks are defined. You can check them with `bundle exec rake -D`.
 
 Note/Limitation
 ---------------
