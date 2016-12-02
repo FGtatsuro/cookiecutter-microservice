@@ -56,7 +56,7 @@ service-{{ cookiecutter.project_name }}         utility_docker_base_image=fgtats
 [{{ cookiecutter.project_name }}:vars]
 ansible_connection=docker
 ansible_user=root
-utility_docker_image_committed=no
+utility_docker_image_committed=yes
 ```
 
 After that, we can build this service as follows.
