@@ -20,7 +20,8 @@ The dependencies on other softwares/libraries for this service are as follows.
 For tests/utility tasks, it's better to install following softwares/libraries.
 
 - Ruby (>= 2.2.x)
-- Rake (>= 11.x)
+- Rake (>= 11.3.x)
+- Bundler (>= 1.13.x)
 
 And this service also depends on [ansible_utility](https://github.com/FGtatsuro/ansible_utility) module.
 In default, we assume that both this service/the module have same parent directory like this:
