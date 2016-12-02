@@ -20,7 +20,8 @@ The dependencies on other softwares/libraries for this service are as follows.
 For tests/utility tasks, it's better to install following softwares/libraries.
 
 - Ruby (>= 2.2.x)
-- Rake (>= 11.x)
+- Rake (>= 11.3.x)
+- Bundler (>= 1.13.x)
 
 And this service also depends on [ansible_utility](https://github.com/FGtatsuro/ansible_utility) module.
 In default, we assume that both this service/the module have same parent directory like this:
@@ -55,7 +56,7 @@ service-{{ cookiecutter.project_name }}         utility_docker_base_image=fgtats
 [{{ cookiecutter.project_name }}:vars]
 ansible_connection=docker
 ansible_user=root
-utility_docker_image_committed=no
+utility_docker_image_committed=yes
 ```
 
 After that, we can build this service as follows.
@@ -66,7 +67,9 @@ $ ansible-playbook provision/main.yml -i spec/inventory/docker/hosts -l {{ cooki
 
 ### Variables
 
-These are Ansible variables related to build process. These must be set before this service is built.
+These are Ansible variables related to build process.
+If you want to use not-default values, it's easy to set them via Ansible [--extra-vars](http://docs.ansible.com/ansible/playbooks_variables.html#passing-variables-on-the-command-line) option.
+
 
 |name|description|default value|
 |---|---|---|
