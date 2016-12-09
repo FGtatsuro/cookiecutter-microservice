@@ -28,7 +28,7 @@ namespace '{{ cookiecutter.project_name }}' do
     task :all =>  all
   end
 
-  service_images = ['fgtatsuro/{{ cookiecutter.project_name }}:0.1']
+  service_images = ['{{ cookiecutter.docker_organization }}/{{ cookiecutter.project_name }}:0.1']
 
   def {{ cookiecutter.project_name }}_start_cmd
     env = [
