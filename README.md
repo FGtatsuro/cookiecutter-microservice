@@ -20,6 +20,7 @@ $ cookiecutter gh:FGtatsuro/cookiecutter-microservice
 ...
 project_name [Name of generated project]: test-project
 project_description [Description of generated project]: Test Project
+docker_organization [Organization of generated Docker images]: fgtatsuro
 year [2016]:
 author [FGtatsuro]:
 ...
