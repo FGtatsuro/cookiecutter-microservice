@@ -24,6 +24,7 @@ namespace '{{ cookiecutter.project_name }}' do
       all << "{{ cookiecutter.project_name }}:spec:#{n}"
     end
 
+    desc 'Run serverspec tests.'
     task :all =>  all
   end
 
