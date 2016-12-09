@@ -24,8 +24,11 @@ namespace '{{ cookiecutter.project_name }}' do
       all << "{{ cookiecutter.project_name }}:spec:#{n}"
     end
 
+    desc 'Run serverspec tests.'
     task :all =>  all
   end
+
+  service_images = ['{{ cookiecutter.docker_organization }}/{{ cookiecutter.project_name }}:0.1']
 
   def {{ cookiecutter.project_name }}_start_cmd
     env = [
@@ -41,6 +44,26 @@ namespace '{{ cookiecutter.project_name }}' do
     return command
   end
 
+  def {{ cookiecutter.project_name }}_images_pull_cmd(repo_url, images)
+    command =
+      images.map{|image|
+        "docker pull #{repo_url}/#{image} && " +
+        "docker tag #{repo_url}/#{image} #{image} && " +
+        "docker rmi -f #{repo_url}/#{image}"
+      }.join(' && ')
+    return command
+  end
+
+  def {{ cookiecutter.project_name }}_images_push_cmd(repo_url, images)
+    command =
+      images.map{|image|
+        "docker tag #{image} #{repo_url}/#{image} && " +
+        "docker push #{repo_url}/#{image} && " +
+        "docker rmi -f #{repo_url}/#{image}"
+      }.join(' && ')
+    return command
+  end
+
   desc "Generate start command.\n" +
        "This is useful when we want to start {{ cookiecutter.project_name }} via Ansible."
   task 'gen-start-cmd' do
@@ -51,6 +74,17 @@ namespace '{{ cookiecutter.project_name }}' do
        "This is useful when we want to stop {{ cookiecutter.project_name }} via Ansible."
   task 'gen-stop-cmd' do
     puts {{ cookiecutter.project_name }}_stop_cmd
+  end
+
+  desc "Generate pull command.\n" +
+       "This is useful when we want to start servers via Ansible." +
+       "Default: repo_url=localhost:5000"
+  task 'gen-pull-cmd', :repo_url do |t, args|
+    args.with_defaults(:repo_url => 'localhost:5000')
+    command = {{ cookiecutter.project_name }}_images_pull_cmd(
+      args[:repo_url],
+      service_images)
+    puts command
   end
 
   desc "Start {{ cookiecutter.project_name }}."
@@ -66,6 +100,36 @@ namespace '{{ cookiecutter.project_name }}' do
     command =
       "cd #{File.expand_path(__dir__)}/deploy/docker/ && " +
       {{ cookiecutter.project_name }}_stop_cmd
+    sh command
+  end
+
+  desc "Build {{ cookiecutter.project_name }} images on localhost. :inventory accepts absolute path or relative path from the directory this Rakefile exists.\n" +
+       "Default: inventory=spec/inventory/docker/hosts(for test)"
+  task 'build', :inventory do |t, args|
+    args.with_defaults(:inventory => 'spec/inventory/docker/hosts')
+    command =
+      "cd #{File.expand_path(__dir__)} && " +
+      "ansible-playbook provision/main.yml -i #{args[:inventory]} -l {{ cookiecutter.project_name }}"
+    sh command
+  end
+
+  desc "Pull {{ cookiecutter.project_name }} images from container registry. Before this task, container registry must run on :repo_url.\n" +
+       "Default: repo_url=localhost:5000"
+  task 'pull', :repo_url do |t, args|
+    args.with_defaults(:repo_url => 'localhost:5000')
+    command = {{ cookiecutter.project_name }}_images_pull_cmd(
+      args[:repo_url],
+      service_images)
+    sh command
+  end
+
+  desc "Push {{ cookiecutter.project_name }} images to container registry. Before this task, container registry must run on :repo_url.\n" +
+       "Default: repo_url=localhost:5000"
+  task 'push', :repo_url do |t, args|
+    args.with_defaults(:repo_url => 'localhost:5000')
+    command = {{ cookiecutter.project_name }}_images_push_cmd(
+      args[:repo_url],
+      service_images)
     sh command
   end
 end

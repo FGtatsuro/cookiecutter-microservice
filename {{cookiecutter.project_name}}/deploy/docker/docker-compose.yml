@@ -3,7 +3,7 @@ version: '2'
 services:
   {{ cookiecutter.project_name }}:
     container_name: service-{{ cookiecutter.project_name }}
-    image: fgtatsuro/{{ cookiecutter.project_name }}:0.1
+    image: {{ cookiecutter.docker_organization }}/{{ cookiecutter.project_name }}:0.1
     command: /opt/{{ cookiecutter.project_name }}/services.sh
     volumes:
       - /etc/localtime:/etc/localtime:ro

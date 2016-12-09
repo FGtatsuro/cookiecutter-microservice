@@ -51,7 +51,7 @@ Before build, We must prepare the inventory including `{{ cookiecutter.project_n
 ```bash
 $ cat spec/inventory/docker/hosts
 [{{ cookiecutter.project_name }}]
-service-{{ cookiecutter.project_name }}         utility_docker_base_image=fgtatsuro/infra-bridgehead:alpine-3.3 utility_docker_commit_image=fgtatsuro/{{ cookiecutter.project_name }}:0.1
+service-{{ cookiecutter.project_name }}         utility_docker_base_image=fgtatsuro/infra-bridgehead:alpine-3.3 utility_docker_commit_image={{ cookiecutter.docker_organization }}/{{ cookiecutter.project_name }}:0.1
 
 [{{ cookiecutter.project_name }}:vars]
 ansible_connection=docker

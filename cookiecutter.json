@@ -1,6 +1,7 @@
 {
         "project_name": "Name of generated project",
         "project_description": "Description of generated project",
+        "docker_organization": "Organization of Generated Docker images",
         "year": "2016",
         "author": "Your Github username"
 }
