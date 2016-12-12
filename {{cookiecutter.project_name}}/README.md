@@ -70,7 +70,6 @@ $ ansible-playbook provision/main.yml -i spec/inventory/docker/hosts -l {{ cooki
 These are Ansible variables related to build process.
 If you want to use not-default values, it's easy to set them via Ansible [--extra-vars](http://docs.ansible.com/ansible/playbooks_variables.html#passing-variables-on-the-command-line) option.
 
-
 |name|description|default value|
 |---|---|---|
 |utility_module_path|Path `ansible_utility` module exists. You can use absolute path or relative path from `./provision/main.yml`.|../../ansible_utility|
