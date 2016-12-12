@@ -26,7 +26,7 @@ For tests/utility tasks, it's better to install following softwares/libraries.
 And this service also depends on [ansible_utility](https://github.com/FGtatsuro/ansible_utility) module.
 In default, we assume that both this service/the module have same parent directory like this:
 
-```
+```bash
 $ ls -1 services
 ...
 ansible_utility
