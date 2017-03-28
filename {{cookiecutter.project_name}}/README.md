@@ -14,8 +14,8 @@ The dependencies on other softwares/libraries for this service are as follows.
 - pip (>= 9.0.x)
 - [Ansible](http://docs.ansible.com/ansible/index.html) (>= 2.2.x)
 - [Ansible roles](./role_requirements.yml)
-- Docker (1.12.x)
-- Docker Compose (1.9.x)
+- Docker (>= 1.12.x)
+- Docker Compose (>= 1.9.x)
 
 For tests/utility tasks, it's better to install following softwares/libraries.
 
