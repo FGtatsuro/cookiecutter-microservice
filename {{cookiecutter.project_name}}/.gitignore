@@ -1,2 +1,4 @@
 roles/*
 provision/*.retry
+.bundle/
+vendor/
