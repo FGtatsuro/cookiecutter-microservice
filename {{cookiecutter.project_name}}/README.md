@@ -120,7 +120,7 @@ At first, please install libraries to test this service.
 $ pip install ansible
 $ ansible-galaxy install -r role_requirements.yml
 $ gem install bundler
-$ bundle install
+$ bundle install --path vendor/bundle
 ```
 
 After that, please create containers for test, and run tests on them.
