@@ -29,7 +29,7 @@ script:
   # - ansible-galaxy install -r role_requirements.yml
   - gem install bundler
   - bundle install
-  - ansible-playbook provision/main.yml -i spec/inventory/docker/hosts -l test_project -vvvv
+  - ansible-playbook provision/main.yml -i tests/inventory/docker/hosts -l test_project -vvvv
   - docker rm -f service-test_project
   - bundle exec rake test_project:gen-start-cmd
   - bundle exec rake test_project:start

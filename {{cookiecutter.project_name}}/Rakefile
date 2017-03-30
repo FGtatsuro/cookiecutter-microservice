@@ -104,9 +104,9 @@ namespace '{{ cookiecutter.project_name }}' do
   end
 
   desc "Build {{ cookiecutter.project_name }} images on localhost. :inventory accepts absolute path or relative path from the directory this Rakefile exists.\n" +
-       "Default: inventory=spec/inventory/docker/hosts(for test)"
+       "Default: inventory=tests/inventory/docker/hosts(for test)"
   task 'build', :inventory do |t, args|
-    args.with_defaults(:inventory => 'spec/inventory/docker/hosts')
+    args.with_defaults(:inventory => 'tests/inventory/docker/hosts')
     command =
       "cd #{File.expand_path(__dir__)} && " +
       "ansible-playbook provision/main.yml -i #{args[:inventory]} -l {{ cookiecutter.project_name }}"
