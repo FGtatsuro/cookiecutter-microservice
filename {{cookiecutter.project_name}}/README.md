@@ -49,7 +49,7 @@ $ ansible-galaxy install -r role_requirements.yml
 Before build, We must prepare the inventory including `{{ cookiecutter.project_name }}` group. For example,
 
 ```bash
-$ cat spec/inventory/docker/hosts
+$ cat tests/inventory/docker/hosts
 [{{ cookiecutter.project_name }}]
 service-{{ cookiecutter.project_name }}         utility_docker_base_image=fgtatsuro/infra-bridgehead:alpine-3.3 utility_docker_commit_image={{ cookiecutter.docker_organization }}/{{ cookiecutter.project_name }}:0.1
 
@@ -62,7 +62,7 @@ utility_docker_image_committed=yes
 After that, we can build this service as follows.
 
 ```bash
-$ ansible-playbook provision/main.yml -i spec/inventory/docker/hosts -l {{ cookiecutter.project_name }}
+$ ansible-playbook provision/main.yml -i tests/inventory/docker/hosts -l {{ cookiecutter.project_name }}
 ```
 
 ### Variables
@@ -126,7 +126,7 @@ $ bundle install --path vendor/bundle
 After that, please create containers for test, and run tests on them.
 
 ```bash
-$ ansible-playbook provision/main.yml -i spec/inventory/docker/hosts -l {{ cookiecutter.project_name }}
+$ ansible-playbook provision/main.yml -i tests/inventory/docker/hosts -l {{ cookiecutter.project_name }}
 $ bundle exec rake {{ cookiecutter.project_name }}:spec:all
 ```
 
